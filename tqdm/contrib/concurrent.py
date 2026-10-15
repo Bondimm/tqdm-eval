@@ -21,7 +21,7 @@ def ensure_lock(tqdm_class, lock_name=""):
     lock = getattr(lock, lock_name, lock)  # maybe subtype
     tqdm_class.set_lock(lock)
     yield lock
-    if old_lock is None:
+    if old_lock is not None:
         del tqdm_class._lock
     else:
         tqdm_class.set_lock(old_lock)
